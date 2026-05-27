@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Intelligence · 大连工业大学艺术与信息工程学院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@100;200;300;400;500;600;700&family=Noto+Sans+SC:wght@100;300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #f5f5f7;
+    --black: #000000;
+    --dark: #1d1d1f;
+    --mid: #6e6e73;
+    --blue: #0071e3;
+    --blue-light: #2997ff;
+    --blue-glow: rgba(41, 151, 255, 0.15);
+    --purple: #bf5af2;
+    --teal: #32d74b;
+    --glass: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: #000;
+    color: var(--white);
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    height: 52px;
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff 0%, #a0c4ff 60%, #bf5af2 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 13px; font-weight: 300; letter-spacing: 0.3px;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    font-size: 13px; font-weight: 400;
+    color: var(--blue-light); cursor: pointer;
+    transition: opacity .2s;
+  }
+  .nav-cta:hover { opacity: .7; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%,
+      rgba(41,151,255,0.18) 0%,
+      rgba(191,90,242,0.10) 40%,
+      transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 80%,
+      rgba(50,215,75,0.06) 0%, transparent 60%);
+  }
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%; filter: blur(80px); opacity: .5;
+    animation: orb-drift 12s ease-in-out infinite alternate;
+  }
+  .orb1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(41,151,255,0.4) 0%, transparent 70%); top: -100px; left: -100px; animation-delay: 0s; }
+  .orb2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(191,90,242,0.35) 0%, transparent 70%); bottom: 0; right: -50px; animation-delay: -4s; }
+  .orb3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(50,215,75,0.2) 0%, transparent 70%); top: 40%; left: 60%; animation-delay: -8s; }
+
+  @keyframes orb-drift {
+    0% { transform: translate(0,0) scale(1); }
+    100% { transform: translate(30px, -40px) scale(1.08); }
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    border-radius: 999px; padding: 6px 16px;
+    font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.7);
+    margin-bottom: 32px; position: relative; z-index: 1;
+    animation: fade-up .8s ease both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 6px var(--teal);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:.6; transform:scale(1.4); }
+  }
+
+  .hero-eyebrow {
+    font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--blue-light); font-weight: 300;
+    margin-bottom: 20px; position: relative; z-index: 1;
+    animation: fade-up .8s .1s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 9vw, 110px);
+    font-weight: 700; line-height: 1.0;
+    letter-spacing: -2px;
+    background: linear-gradient(160deg, #ffffff 0%, #c8e0ff 45%, #bf5af2 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    position: relative; z-index: 1;
+    animation: fade-up .9s .2s ease both;
+  }
+  .hero-subtitle {
+    font-size: clamp(16px, 2.5vw, 22px); font-weight: 300; letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.75); margin-top: 24px;
+    max-width: 640px; line-height: 1.6;
+    position: relative; z-index: 1;
+    animation: fade-up .9s .35s ease both;
+  }
+  .hero-school {
+    font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 12px;
+    letter-spacing: 1px; position: relative; z-index: 1;
+    animation: fade-up .9s .45s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; margin-top: 48px; flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 1;
+    animation: fade-up .9s .55s ease both;
+  }
+  .btn-primary {
+    padding: 14px 32px; border-radius: 980px;
+    background: var(--blue); color: #fff;
+    font-size: 15px; font-weight: 400; border: none; cursor: pointer;
+    transition: all .25s; letter-spacing: 0.2px;
+  }
+  .btn-primary:hover { background: #0077ed; transform: scale(1.02); }
+  .btn-ghost {
+    padding: 14px 32px; border-radius: 980px;
+    background: transparent; color: var(--blue-light);
+    font-size: 15px; font-weight: 400;
+    border: 1px solid rgba(41,151,255,0.4); cursor: pointer;
+    transition: all .25s;
+  }
+  .btn-ghost:hover { background: rgba(41,151,255,0.08); border-color: var(--blue-light); }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 2px;
+    animation: fade-up 1s 1s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+  @keyframes scroll-pulse {
+    0%,100% { opacity:.4; transform:scaleY(1); }
+    50% { opacity:1; transform:scaleY(1.2); }
+  }
+
+  @keyframes fade-up {
+    from { opacity:0; transform:translateY(30px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 120px 24px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--blue-light); font-weight: 400; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 700; line-height: 1.1; letter-spacing: -1px;
+    color: #fff;
+  }
+  .section-title span { color: var(--blue-light); }
+  .section-desc {
+    font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.6);
+    max-width: 580px; margin-top: 20px; line-height: 1.7;
+  }
+
+  /* ── INTRO STRIP ── */
+  .intro-strip {
+    background: linear-gradient(180deg, #000 0%, #0a0a0f 100%);
+    padding: 80px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .intro-strip p {
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: 300; line-height: 1.4;
+    color: rgba(255,255,255,0.55);
+    max-width: 900px; margin: 0 auto;
+  }
+  .intro-strip p strong {
+    font-weight: 600; color: #fff;
+  }
+  .intro-strip p em {
+    font-style: normal; color: var(--blue-light);
+  }
+
+  /* ── DEVICE SHOWCASE ── */
+  .showcase {
+    background: #000;
+    padding: 0 0 140px;
+  }
+  .showcase-header {
+    text-align: center; padding: 120px 24px 80px;
+  }
+  .device-tabs {
+    display: flex; justify-content: center; gap: 2px;
+    margin-bottom: 80px; padding: 0 24px;
+  }
+  .dtab {
+    padding: 10px 28px; border-radius: 999px;
+    background: transparent; border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.5); font-size: 14px; cursor: pointer;
+    transition: all .25s; font-family: inherit;
+  }
+  .dtab.active, .dtab:hover {
+    background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3);
+    color: #fff;
+  }
+  .dtab.active { background: rgba(41,151,255,0.15); border-color: var(--blue-light); color: var(--blue-light); }
+
+  /* MACBOOK */
+  .device-panel { display: none; }
+  .device-panel.active { display: block; }
+
+  .macbook-wrap {
+    max-width: 900px; margin: 0 auto; position: relative;
+    padding: 0 40px;
+  }
+  .macbook {
+    position: relative; width: 100%;
+  }
+  .mb-lid {
+    background: linear-gradient(180deg, #2a2a2c 0%, #1a1a1c 100%);
+    border-radius: 18px 18px 0 0;
+    padding: 8px 8px 0;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.08),
+      0 40px 120px rgba(0,0,0,0.8),
+      0 0 60px rgba(41,151,255,0.12);
+  }
+  .mb-screen {
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    position: relative;
+  }
+  .mb-base {
+    background: linear-gradient(180deg, #3a3a3c 0%, #2a2a2c 100%);
+    height: 22px; border-radius: 0 0 4px 4px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mb-notch-base {
+    width: 140px; height: 5px; border-radius: 0 0 8px 8px;
+    background: #1a1a1c;
+  }
+  .mb-foot {
+    background: linear-gradient(180deg, #2a2a2c, #1d1d1f);
+    height: 12px; border-radius: 0 0 8px 8px;
+    margin: 0 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  }
+
+  /* IPHONE */
+  .iphone-stage {
+    display: flex; justify-content: center; align-items: flex-end;
+    gap: 40px; padding: 0 24px;
+    flex-wrap: wrap;
+  }
+  .iphone-wrap {
+    position: relative; transition: transform .4s;
+  }
+  .iphone-wrap:nth-child(1) { transform: rotate(-5deg) translateY(20px); }
+  .iphone-wrap:nth-child(2) { transform: rotate(0deg) translateY(0px); }
+  .iphone-wrap:nth-child(3) { transform: rotate(5deg) translateY(20px); }
+  .iphone-wrap:hover { transform: rotate(0) translateY(-10px) scale(1.03) !important; z-index: 5; }
+
+  .iphone {
+    width: 200px;
+    background: linear-gradient(160deg, #3a3a3c 0%, #1d1d1f 100%);
+    border-radius: 40px;
+    padding: 10px;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.12),
+      0 30px 80px rgba(0,0,0,0.7),
+      0 0 40px rgba(41,151,255,0.08);
+  }
+  .iphone-inner {
+    background: #000;
+    border-radius: 32px;
+    overflow: hidden;
+    aspect-ratio: 9/19.5;
+    position: relative;
+  }
+  .iphone-notch {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 24px;
+    background: #000; border-radius: 0 0 16px 16px;
+    z-index: 10;
+  }
+  .iphone-btn { width: 3px; height: 32px; background: #3a3a3c; border-radius: 2px; position: absolute; left: -13px; top: 100px; box-shadow: 0 50px 0 #3a3a3c, 0 90px 0 #3a3a3c; }
+  .iphone-pbtn { width: 3px; height: 50px; background: #3a3a3c; border-radius: 2px; position: absolute; right: -13px; top: 130px; }
+
+  /* IPAD */
+  .ipad-wrap { max-width: 700px; margin: 0 auto; padding: 0 40px; }
+  .ipad {
+    background: linear-gradient(160deg, #3a3a3c 0%, #1d1d1f 100%);
+    border-radius: 28px;
+    padding: 14px;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.1),
+      0 40px 100px rgba(0,0,0,0.75),
+      0 0 50px rgba(191,90,242,0.1);
+  }
+  .ipad-inner {
+    background: #000; border-radius: 18px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    position: relative;
+  }
+  .ipad-camera {
+    position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #2a2a2c; z-index: 10;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.1);
+  }
+
+  /* ── SCREEN CONTENT ── */
+  .screen-content {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #0a0a14 0%, #030308 100%);
+    display: flex; flex-direction: column;
+    padding: 20px; font-size: 10px;
+    position: relative; overflow: hidden;
+  }
+  .sc-topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 9px; color: rgba(255,255,255,0.4); margin-bottom: 16px;
+  }
+  .sc-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px; font-weight: 700;
+    background: linear-gradient(90deg, #fff, #a0c4ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .sc-chat {
+    flex: 1; display: flex; flex-direction: column; gap: 10px;
+    overflow: hidden;
+  }
+  .sc-msg {
+    max-width: 80%; border-radius: 14px; padding: 8px 12px;
+    font-size: 9px; line-height: 1.4; animation: msg-appear .4s ease both;
+  }
+  .sc-msg.ai {
+    background: rgba(41,151,255,0.15); border: 1px solid rgba(41,151,255,0.2);
+    color: rgba(255,255,255,0.85); align-self: flex-start;
+  }
+  .sc-msg.user {
+    background: var(--blue); color: #fff;
+    align-self: flex-end;
+  }
+  @keyframes msg-appear {
+    from { opacity:0; transform: translateY(6px) scale(.97); }
+    to { opacity:1; transform: translateY(0) scale(1); }
+  }
+  .sc-input {
+    display: flex; gap: 6px; margin-top: 12px; align-items: center;
+  }
+  .sc-inputbox {
+    flex: 1; background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 999px; padding: 6px 12px;
+    font-size: 8px; color: rgba(255,255,255,0.4);
+  }
+  .sc-send {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--blue); display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+  }
+  .sc-glow {
+    position: absolute; width: 150px; height: 150px;
+    border-radius: 50%; filter: blur(50px);
+    background: rgba(41,151,255,0.15);
+    top: 30%; right: -30px; pointer-events: none;
+  }
+
+  /* macbook specific */
+  .mb-screen .screen-content {
+    font-size: 12px;
+    padding: 28px 32px;
+  }
+  .mb-screen .sc-msg { font-size: 11px; padding: 10px 16px; border-radius: 18px; }
+  .mb-screen .sc-inputbox { font-size: 11px; padding: 10px 18px; }
+
+  /* ── FEATURES GRID ── */
+  .features { background: #050508; }
+  .feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 24px; overflow: hidden;
+    margin-top: 80px;
+  }
+  .feat-card {
+    background: #050508;
+    padding: 48px 40px;
+    position: relative; overflow: hidden;
+    transition: background .3s;
+  }
+  .feat-card:hover { background: #0a0a10; }
+  .feat-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 24px;
+  }
+  .feat-icon.blue { background: rgba(41,151,255,0.15); }
+  .feat-icon.purple { background: rgba(191,90,242,0.15); }
+  .feat-icon.green { background: rgba(50,215,75,0.12); }
+  .feat-icon.orange { background: rgba(255,159,10,0.12); }
+  .feat-icon.pink { background: rgba(255,55,95,0.12); }
+  .feat-icon.teal { background: rgba(100,210,255,0.12); }
+  .feat-title {
+    font-size: 20px; font-weight: 600; color: #fff;
+    margin-bottom: 12px; letter-spacing: -0.3px;
+  }
+  .feat-desc {
+    font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+  }
+  .feat-card-glow {
+    position: absolute; bottom: -40px; right: -40px;
+    width: 120px; height: 120px; border-radius: 50%;
+    filter: blur(40px); opacity: 0;
+    transition: opacity .3s;
+    pointer-events: none;
+  }
+  .feat-card:hover .feat-card-glow { opacity: 1; }
+  .feat-card.span2 { grid-column: span 2; }
+
+  /* ── AI WRITING SECTION ── */
+  .writing-section {
+    background: linear-gradient(180deg, #050508 0%, #000 100%);
+    overflow: hidden;
+  }
+  .writing-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    margin-top: 80px;
+  }
+  .writing-demo {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px; padding: 32px;
+    position: relative;
+  }
+  .wd-header {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+  }
+  .wd-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .wd-title { font-size: 13px; color: rgba(255,255,255,0.4); margin-left: 4px; }
+  .wd-text {
+    font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.6);
+    font-weight: 300;
+  }
+  .wd-highlight {
+    background: linear-gradient(90deg, rgba(41,151,255,0.2), rgba(191,90,242,0.15));
+    border-radius: 4px; padding: 0 4px;
+    color: rgba(255,255,255,0.9); font-weight: 400;
+    border-bottom: 1px solid rgba(41,151,255,0.4);
+  }
+  .wd-cursor {
+    display: inline-block; width: 2px; height: 16px;
+    background: var(--blue-light); margin-left: 2px;
+    animation: blink .9s step-end infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+  .wd-actions {
+    display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap;
+  }
+  .wd-btn {
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 12px; border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6); background: transparent; cursor: pointer;
+    transition: all .2s; font-family: inherit;
+  }
+  .wd-btn:hover { border-color: var(--blue-light); color: var(--blue-light); }
+  .wd-btn.active { background: rgba(41,151,255,0.15); border-color: var(--blue-light); color: var(--blue-light); }
+
+  /* ── STATS ── */
+  .stats-row {
+    background: #000; padding: 100px 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .stats-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 40px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px; font-weight: 700; letter-spacing: -2px;
+    background: linear-gradient(135deg, #fff 0%, #a0c4ff 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    margin-top: 10px; font-weight: 300; letter-spacing: 0.5px;
+  }
+
+  /* ── PRIVACY ── */
+  .privacy {
+    background: linear-gradient(180deg, #000 0%, #0a0010 100%);
+    text-align: center;
+  }
+  .privacy-card {
+    max-width: 760px; margin: 60px auto 0;
+    background: linear-gradient(135deg, rgba(191,90,242,0.06) 0%, rgba(41,151,255,0.06) 100%);
+    border: 1px solid rgba(191,90,242,0.15);
+    border-radius: 28px; padding: 64px;
+  }
+  .privacy-icon { font-size: 64px; margin-bottom: 28px; }
+  .privacy-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 16px;
+  }
+  .privacy-desc {
+    font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.55);
+    line-height: 1.7; max-width: 520px; margin: 0 auto;
+  }
+  .privacy-chips {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: center; margin-top: 36px;
+  }
+  .pchip {
+    padding: 8px 20px; border-radius: 999px;
+    border: 1px solid rgba(191,90,242,0.25);
+    background: rgba(191,90,242,0.08);
+    font-size: 13px; color: rgba(255,255,255,0.7);
+  }
+
+  /* ── CHAT DEMO ── */
+  .chat-demo {
+    background: #050508; padding: 140px 24px;
+  }
+  .chat-window {
+    max-width: 800px; margin: 60px auto 0;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px; overflow: hidden;
+  }
+  .cw-titlebar {
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 16px 24px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cw-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .cw-name { font-size: 13px; color: rgba(255,255,255,0.5); margin-left: 8px; }
+  .cw-badge {
+    margin-left: auto; padding: 3px 10px; border-radius: 999px;
+    background: rgba(50,215,75,0.12); border: 1px solid rgba(50,215,75,0.25);
+    font-size: 11px; color: var(--teal);
+  }
+  .cw-body { padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; }
+  .cw-msg {
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .cw-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .cw-avatar.ai {
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+  }
+  .cw-avatar.user { background: rgba(255,255,255,0.1); }
+  .cw-bubble {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 14px 18px;
+    font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.8);
+    max-width: 85%; font-weight: 300;
+  }
+  .cw-msg.user { flex-direction: row-reverse; }
+  .cw-msg.user .cw-bubble {
+    background: rgba(41,151,255,0.12);
+    border-color: rgba(41,151,255,0.2);
+    color: rgba(255,255,255,0.9);
+  }
+  .typing-dots span {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.4); margin: 0 2px;
+    animation: dot-bounce .8s ease-in-out infinite;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: .15s; }
+  .typing-dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes dot-bounce {
+    0%,80%,100% { transform:translateY(0); }
+    40% { transform:translateY(-5px); }
+  }
+
+  /* ── INTEGRATION ── */
+  .integration { background: #000; }
+  .int-grid {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+    margin-top: 80px;
+  }
+  .int-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px; padding: 32px 24px;
+    text-align: center; transition: all .3s;
+    position: relative; overflow: hidden;
+  }
+  .int-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-4px);
+  }
+  .int-icon { font-size: 36px; margin-bottom: 16px; }
+  .int-name { font-size: 16px; font-weight: 500; color: #fff; margin-bottom: 8px; }
+  .int-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 60px 24px 40px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px; margin-bottom: 60px;
+  }
+  .footer-brand .nav-logo { font-size: 22px; }
+  .footer-brand p {
+    font-size: 13px; color: rgba(255,255,255,0.35);
+    margin-top: 12px; line-height: 1.6; max-width: 260px;
+  }
+  .footer-col h4 {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 16px; font-weight: 400;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: color .2s;
+  }
+  .footer-col ul a:hover { color: #fff; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom p {
+    font-size: 12px; color: rgba(255,255,255,0.25);
+  }
+  .powered-by {
+    font-size: 11px; color: rgba(255,255,255,0.25);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .powered-by span { color: rgba(41,151,255,0.6); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── GRADIENT DIVIDER ── */
+  .grad-div {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(41,151,255,0.3), rgba(191,90,242,0.3), transparent);
+  }
+
+  @media(max-width:768px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .feat-grid { grid-template-columns: 1fr; }
+    .feat-card.span2 { grid-column: span 1; }
+    .writing-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: repeat(2,1fr); }
+    .int-grid { grid-template-columns: repeat(2,1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .iphone-stage .iphone-wrap:nth-child(1),
+    .iphone-stage .iphone-wrap:nth-child(3) { display: none; }
+    .iphone-wrap:nth-child(2) { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Campus Intelligence</div>
+  <ul class="nav-links">
+    <li><a href="#features">功能</a></li>
+    <li><a href="#showcase">设备</a></li>
+    <li><a href="#chat">助手</a></li>
+    <li><a href="#privacy">隐私</a></li>
+    <li><a href="#integration">集成</a></li>
+  </ul>
+  <div class="nav-cta">开始体验 →</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    由 ChatGPT 强力驱动 · Powered by ChatGPT
+  </div>
+  <div class="hero-eyebrow">大连工业大学艺术与信息工程学院</div>
+  <h1 class="hero-title">Campus<br>Intelligence</h1>
+  <p class="hero-subtitle">校园智能，为每一位学子而生。以 AI 重新定义你的学习、创作与探索方式。</p>
+  <p class="hero-school">Dalian Polytechnic University · School of Art & Information Engineering</p>
+  <div class="hero-actions">
+    <button class="btn-primary">立即体验</button>
+    <button class="btn-ghost">了解更多 ↓</button>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <p>Campus Intelligence 是<strong>专为大工艺信打造</strong>的校园 AI 平台，由 <em>ChatGPT</em> 提供核心智能，深度融合<strong>学习、创作、生活</strong>的每个维度。</p>
+</div>
+
+<!-- DEVICE SHOWCASE -->
+<div class="showcase" id="showcase">
+  <div class="showcase-header reveal">
+    <div class="section-label">多端体验</div>
+    <h2 class="section-title">无论你在哪里<br><span>智能始终相随</span></h2>
+  </div>
+
+  <div class="device-tabs">
+    <button class="dtab active" onclick="switchDevice('mac')">MacBook</button>
+    <button class="dtab" onclick="switchDevice('iphone')">iPhone</button>
+    <button class="dtab" onclick="switchDevice('ipad')">iPad</button>
+  </div>
+
+  <!-- MACBOOK PANEL -->
+  <div class="device-panel active" id="panel-mac">
+    <div class="macbook-wrap">
+      <div class="macbook">
+        <div class="mb-lid">
+          <div class="mb-screen">
+            <div class="screen-content">
+              <div class="sc-topbar">
+                <div class="sc-logo">Campus Intelligence</div>
+                <div>大连工业大学艺信学院</div>
+                <div style="display:flex;gap:6px;align-items:center;">
+                  <div style="width:8px;height:8px;border-radius:50%;background:#32d74b;box-shadow:0 0 6px #32d74b;"></div>
+                  ChatGPT 在线
+                </div>
+              </div>
+              <div class="sc-chat">
+                <div class="sc-msg ai" style="animation-delay:.2s">
+                  你好！我是 Campus Intelligence，你的专属 AI 学习伙伴 🎓<br>
+                  今天需要什么帮助？论文写作、代码调试，还是课程规划？
+                </div>
+                <div class="sc-msg user" style="animation-delay:.6s">帮我优化这段关于交互设计的论文摘要</div>
+                <div class="sc-msg ai" style="animation-delay:1s">
+                  当然！我来分析您的摘要结构，从<strong style="color:#a0c4ff">研究背景</strong>、<strong style="color:#bf5af2">方法论</strong>与<strong style="color:#32d74b">创新贡献</strong>三个维度为您提供优化建议……
+                </div>
+              </div>
+              <div class="sc-input">
+                <div class="sc-inputbox">向 Campus Intelligence 提问…</div>
+                <div class="sc-send">↑</div>
+              </div>
+              <div class="sc-glow"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-base"><div class="mb-notch-base"></div></div>
+        <div class="mb-foot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IPHONE PANEL -->
+  <div class="device-panel" id="panel-iphone">
+    <div class="iphone-stage">
+      <div class="iphone-wrap">
+        <div class="iphone">
+          <div class="iphone-inner">
+            <div class="iphone-notch"></div>
+            <div class="iphone-btn"></div>
+            <div class="iphone-pbtn"></div>
+            <div class="screen-content" style="padding:36px 14px 14px;font-size:9px;">
+              <div class="sc-topbar" style="font-size:8px;margin-bottom:12px;">
+                <div class="sc-logo" style="font-size:10px;">CI</div>
+                <div style="display:flex;gap:4px;align-items:center;"><div style="width:5px;height:5px;border-radius:50%;background:#32d74b;"></div>在线</div>
+              </div>
+              <div class="sc-chat" style="gap:8px;">
+                <div class="sc-msg ai" style="font-size:8px;padding:7px 10px;">帮我规划今天的学习计划 📚</div>
+                <div class="sc-msg user" style="font-size:8px;padding:7px 10px;">早上有高数，下午想复习设计</div>
+                <div class="sc-msg ai" style="font-size:8px;padding:7px 10px;">好的！建议安排：<br>08:00 高等数学<br>14:00 UI 设计复习<br>19:00 项目总结</div>
+              </div>
+              <div class="sc-input" style="margin-top:auto;">
+                <div class="sc-inputbox" style="font-size:7px;">发送消息…</div>
+                <div class="sc-send" style="font-size:9px;">↑</div>
+              </div>
+              <div class="sc-glow" style="width:80px;height:80px;filter:blur(30px);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="iphone-wrap">
+        <div class="iphone">
+          <div class="iphone-inner">
+            <div class="iphone-notch"></div>
+            <div class="iphone-btn"></div>
+            <div class="iphone-pbtn"></div>
+            <div class="screen-content" style="padding:36px 14px 14px;background:linear-gradient(160deg,#0a0a1a,#030312);">
+              <div class="sc-topbar" style="font-size:8px;margin-bottom:12px;">
+                <div class="sc-logo" style="font-size:10px;">智能搜索</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:8px 12px;font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:12px;">🔍 搜索校园任何问题…</div>
+              <div style="font-size:7px;color:rgba(255,255,255,0.3);margin-bottom:8px;">热门话题</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="background:rgba(41,151,255,0.1);border:1px solid rgba(41,151,255,0.2);border-radius:10px;padding:8px;font-size:7px;color:rgba(255,255,255,0.7);">📖 毕业论文写作指南</div>
+                <div style="background:rgba(191,90,242,0.1);border:1px solid rgba(191,90,242,0.2);border-radius:10px;padding:8px;font-size:7px;color:rgba(255,255,255,0.7);">🎨 交互设计资源库</div>
+                <div style="background:rgba(50,215,75,0.08);border:1px solid rgba(50,215,75,0.2);border-radius:10px;padding:8px;font-size:7px;color:rgba(255,255,255,0.7);">💻 编程竞赛备战</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="iphone-wrap">
+        <div class="iphone">
+          <div class="iphone-inner">
+            <div class="iphone-notch"></div>
+            <div class="iphone-btn"></div>
+            <div class="iphone-pbtn"></div>
+            <div class="screen-content" style="padding:36px 14px 14px;background:linear-gradient(160deg,#0a0010,#030308);">
+              <div class="sc-topbar" style="font-size:8px;margin-bottom:12px;">
+                <div class="sc-logo" style="font-size:10px;background:linear-gradient(90deg,#fff,#bf5af2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">AI 创作</div>
+              </div>
+              <div style="font-size:7px;color:rgba(255,255,255,0.3);margin-bottom:10px;">正在生成设计方案…</div>
+              <div style="background:rgba(191,90,242,0.08);border:1px solid rgba(191,90,242,0.15);border-radius:12px;padding:10px;margin-bottom:8px;">
+                <div style="font-size:7px;color:rgba(255,255,255,0.7);line-height:1.6;">✨ 极简主义 UI 概念<br>色彩：深蓝 × 紫渐变<br>风格：新拟态 + 毛玻璃</div>
+              </div>
+              <div style="background:rgba(41,151,255,0.08);border:1px solid rgba(41,151,255,0.15);border-radius:12px;padding:10px;">
+                <div style="font-size:7px;color:rgba(255,255,255,0.7);line-height:1.6;">🎯 科技感数据大屏<br>色彩：黑金 × 青色<br>风格：赛博朋克风</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IPAD PANEL -->
+  <div class="device-panel" id="panel-ipad">
+    <div class="ipad-wrap">
+      <div class="ipad">
+        <div class="ipad-inner">
+          <div class="ipad-camera"></div>
+          <div class="screen-content" style="padding:24px 28px;flex-direction:row;gap:24px;">
+            <!-- sidebar -->
+            <div style="width:180px;flex-shrink:0;border-right:1px solid rgba(255,255,255,0.06);padding-right:20px;">
+              <div class="sc-logo" style="font-size:13px;margin-bottom:20px;">Campus Intelligence</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="padding:8px 12px;border-radius:10px;background:rgba(41,151,255,0.15);border:1px solid rgba(41,151,255,0.25);font-size:10px;color:#a0c4ff;">💬 AI 助手</div>
+                <div style="padding:8px 12px;border-radius:10px;font-size:10px;color:rgba(255,255,255,0.4);">📚 智能课表</div>
+                <div style="padding:8px 12px;border-radius:10px;font-size:10px;color:rgba(255,255,255,0.4);">✍️ 论文助手</div>
+                <div style="padding:8px 12px;border-radius:10px;font-size:10px;color:rgba(255,255,255,0.4);">🎨 创作工坊</div>
+                <div style="padding:8px 12px;border-radius:10px;font-size:10px;color:rgba(255,255,255,0.4);">📊 学业分析</div>
+              </div>
+            </div>
+            <!-- main -->
+            <div style="flex:1;display:flex;flex-direction:column;">
+              <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:14px;">今天，大连工业大学</div>
+              <div class="sc-chat" style="gap:10px;flex:1;">
+                <div class="sc-msg ai" style="font-size:9px;padding:8px 12px;">你好！我是你的 Campus Intelligence 助手，今天有哪些学习目标？🎓</div>
+                <div class="sc-msg user" style="font-size:9px;padding:8px 12px;">我需要完成一份交互设计的期末报告</div>
+                <div class="sc-msg ai" style="font-size:9px;padding:8px 12px;">好的，我来帮你搭建报告结构：<br>① 研究背景与目的<br>② 用户调研与分析<br>③ 设计方案与原型<br>④ 可用性测试结果<br>⑤ 总结与展望</div>
+              </div>
+              <div class="sc-input" style="margin-top:12px;">
+                <div class="sc-inputbox" style="font-size:9px;">继续提问 Campus Intelligence…</div>
+                <div class="sc-send">↑</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grad-div"></div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">核心能力</div>
+      <h2 class="section-title">为大工艺信<br><span>量身定制的智能</span></h2>
+    </div>
+    <div class="feat-grid reveal">
+      <div class="feat-card">
+        <div class="feat-icon blue">✍️</div>
+        <div class="feat-title">智能写作助手</div>
+        <div class="feat-desc">从论文摘要到设计报告，AI 深度理解学术语境，一键优化表达、结构与逻辑，让你的文字更有力量。</div>
+        <div class="feat-card-glow" style="background:rgba(41,151,255,0.4);"></div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon purple">🎨</div>
+        <div class="feat-title">创意设计伙伴</div>
+        <div class="feat-desc">输入创意灵感，获取配色方案、版式建议与用户体验优化策略，专为艺信学院的设计学子打造。</div>
+        <div class="feat-card-glow" style="background:rgba(191,90,242,0.4);"></div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon green">💻</div>
+        <div class="feat-title">代码调试专家</div>
+        <div class="feat-desc">支持 Python、JavaScript、Java 等主流语言，智能识别 bug、解释算法逻辑，让编程学习事半功倍。</div>
+        <div class="feat-card-glow" style="background:rgba(50,215,75,0.3);"></div>
+      </div>
+      <div class="feat-card span2">
+        <div class="feat-icon orange">📚</div>
+        <div class="feat-title">个性化学习规划</div>
+        <div class="feat-desc">基于你的课程表、学习习惯与目标，AI 自动生成最优学习路径，智能推送知识点，帮你在考试季保持最佳状态。支持与校园教务系统联动，实时同步课程进度与作业截止日期。</div>
+        <div class="feat-card-glow" style="background:rgba(255,159,10,0.3);"></div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon pink">🔍</div>
+        <div class="feat-title">校园智能搜索</div>
+        <div class="feat-desc">一句话搜索校园资讯、图书馆资源、导师信息与学术数据库，告别繁琐操作。</div>
+        <div class="feat-card-glow" style="background:rgba(255,55,95,0.3);"></div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon teal">🌐</div>
+        <div class="feat-title">多语言学术翻译</div>
+        <div class="feat-desc">高精度学术论文翻译，保留专业术语准确性，支持中英日韩四语互译，助力国际学术交流。</div>
+        <div class="feat-card-glow" style="background:rgba(100,210,255,0.3);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING DEMO -->
+<section class="writing-section" id="writing">
+  <div class="section-inner">
+    <div class="writing-grid">
+      <div class="reveal">
+        <div class="section-label">智能写作</div>
+        <h2 class="section-title">思维的<br><span>延伸与放大</span></h2>
+        <p class="section-desc">Campus Intelligence 理解你的写作意图，而不仅仅是你写下的字句。它在你创作的同时悄然工作，提供实时建议，让每一个想法都能完整表达。</p>
+        <div style="margin-top:40px;display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:rgba(41,151,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div>
+            <div><div style="font-size:16px;font-weight:500;color:#fff;margin-bottom:4px;">上下文感知重写</div><div style="font-size:14px;color:rgba(255,255,255,0.45);font-weight:300;">理解段落语境，保持学术风格一致性</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:rgba(191,90,242,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div>
+            <div><div style="font-size:16px;font-weight:500;color:#fff;margin-bottom:4px;">引用格式自动化</div><div style="font-size:14px;color:rgba(255,255,255,0.45);font-weight:300;">APA、MLA、GB/T 7714 一键规范</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:rgba(50,215,75,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div>
+            <div><div style="font-size:16px;font-weight:500;color:#fff;margin-bottom:4px;">降重与查重预检</div><div style="font-size:14px;color:rgba(255,255,255,0.45);font-weight:300;">提交前智能检测，有效提升原创性</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="writing-demo reveal">
+        <div class="wd-header">
+          <div class="wd-dot" style="background:#ff5f57;"></div>
+          <div class="wd-dot" style="background:#febc2e;"></div>
+          <div class="wd-dot" style="background:#28c840;"></div>
+          <div class="wd-title">论文摘要编辑器 · AI 增强模式</div>
+        </div>
+        <div class="wd-text">
+          本研究以<span class="wd-highlight">用户体验设计</span>为核心视角，探讨在移动端应用场景下，
+          <span class="wd-highlight">交互反馈机制</span>对用户认知负荷与操作效率的影响。
+          通过对 120 名在校学生进行可用性测试，结合<span class="wd-highlight">眼动追踪技术</span>，
+          本文提出了一套面向高校学习场景的交互设计规范框架，
+          旨在提升数字教育工具的用户体验质量。<span class="wd-cursor"></span>
+        </div>
+        <div class="wd-actions">
+          <button class="wd-btn active">✨ AI 优化中</button>
+          <button class="wd-btn">精简表达</button>
+          <button class="wd-btn">强化逻辑</button>
+          <button class="wd-btn">英文翻译</button>
+        </div>
+        <div style="margin-top:20px;padding:16px;background:rgba(41,151,255,0.06);border:1px solid rgba(41,151,255,0.15);border-radius:12px;">
+          <div style="font-size:11px;color:var(--blue-light);margin-bottom:8px;">💡 AI 建议</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;font-weight:300;">
+            建议在"认知负荷"后补充量化指标，如"降低 23% 的操作错误率"，可显著增强研究贡献的可信度。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stats-inner reveal">
+    <div>
+      <div class="stat-num" id="stat1">0</div>
+      <div class="stat-label">活跃学生用户</div>
+    </div>
+    <div>
+      <div class="stat-num" id="stat2">0</div>
+      <div class="stat-label">每日 AI 对话次数</div>
+    </div>
+    <div>
+      <div class="stat-num" id="stat3">0</div>
+      <div class="stat-label">支持学科领域</div>
+    </div>
+    <div>
+      <div class="stat-num" id="stat4">0</div>
+      <div class="stat-label">平均满意度</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT DEMO -->
+<section class="chat-demo" id="chat">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">实时 AI 对话</div>
+      <h2 class="section-title" style="text-align:center;">与智能对话<br><span>获得真实解答</span></h2>
+      <p class="section-desc" style="margin:20px auto 0;text-align:center;">Campus Intelligence 由 ChatGPT 驱动，提供精准、自然、富有深度的学术解答。</p>
+    </div>
+    <div class="chat-window reveal">
+      <div class="cw-titlebar">
+        <div class="cw-dot" style="background:#ff5f57;"></div>
+        <div class="cw-dot" style="background:#febc2e;"></div>
+        <div class="cw-dot" style="background:#28c840;"></div>
+        <div class="cw-name">Campus Intelligence · ChatGPT 驱动</div>
+        <div class="cw-badge">● 在线</div>
+      </div>
+      <div class="cw-body" id="chatBody">
+        <div class="cw-msg">
+          <div class="cw-avatar ai">🎓</div>
+          <div class="cw-bubble">
+            你好！我是 Campus Intelligence，大连工业大学艺术与信息工程学院的专属 AI 助手。<br><br>
+            我可以帮助你进行论文写作、代码调试、设计创意、学习规划等。请问今天有什么我可以帮你的？
+          </div>
+        </div>
+        <div class="cw-msg user">
+          <div class="cw-avatar user">👤</div>
+          <div class="cw-bubble">我想了解如何用 Python 实现一个简单的神经网络？</div>
+        </div>
+        <div class="cw-msg">
+          <div class="cw-avatar ai">🎓</div>
+          <div class="cw-bubble">
+            很好的问题！用 Python 实现神经网络，我推荐从以下几个步骤入手：<br><br>
+            <strong style="color:#a0c4ff;">① 使用 NumPy 从零构建</strong>——理解反向传播的数学原理<br>
+            <strong style="color:#bf5af2;">② 使用 PyTorch 框架</strong>——工业级深度学习库，灵活高效<br>
+            <strong style="color:#32d74b;">③ 使用 TensorFlow/Keras</strong>——适合快速原型开发<br><br>
+            作为初学者，建议先从 PyTorch 的官方教程开始，配合你们学院的课程体系。需要我直接给你写一段示例代码吗？
+          </div>
+        </div>
+        <div class="cw-msg" id="typingMsg" style="display:none;">
+          <div class="cw-avatar ai">🎓</div>
+          <div class="cw-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>
+        </div>
+      </div>
+      <div style="padding:16px 28px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:12px;align-items:center;">
+        <input id="chatInput" type="text" placeholder="向 Campus Intelligence 提问…"
+          style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 18px;color:#fff;font-family:inherit;font-size:14px;outline:none;"
+          onkeydown="if(event.key==='Enter')sendChat()">
+        <button onclick="sendChat()" style="padding:12px 24px;border-radius:12px;background:var(--blue);color:#fff;border:none;font-size:14px;cursor:pointer;font-family:inherit;transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">发送</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="grad-div"></div>
+
+<!-- PRIVACY -->
+<section class="privacy" id="privacy">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">隐私与安全</div>
+      <h2 class="section-title" style="text-align:center;">你的数据<br><span>你说了算</span></h2>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="privacy-icon">🔐</div>
+      <div class="privacy-title">为隐私而设计</div>
+      <p class="privacy-desc">Campus Intelligence 从设计之初便将学生隐私置于首位。所有对话数据在设备端加密处理，无需上传个人信息，无广告追踪，无数据贩卖。</p>
+      <div class="privacy-chips">
+        <div class="pchip">🔒 端对端加密</div>
+        <div class="pchip">🚫 无广告追踪</div>
+        <div class="pchip">🛡️ 数据本地优先</div>
+        <div class="pchip">✅ 符合教育数据规范</div>
+        <div class="pchip">🔄 随时删除数据</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATION -->
+<section class="integration" id="integration">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">生态集成</div>
+      <h2 class="section-title">深入<span>校园每个角落</span></h2>
+      <p class="section-desc">Campus Intelligence 无缝融入你已有的学习工具，打造统一的智能校园体验。</p>
+    </div>
+    <div class="int-grid reveal">
+      <div class="int-card">
+        <div class="int-icon">📅</div>
+        <div class="int-name">教务系统</div>
+        <div class="int-desc">自动同步课程表，智能提醒考试与作业截止日期</div>
+      </div>
+      <div class="int-card">
+        <div class="int-icon">📖</div>
+        <div class="int-name">图书馆资源</div>
+        <div class="int-desc">直接检索馆藏文献，AI 辅助阅读与摘要提取</div>
+      </div>
+      <div class="int-card">
+        <div class="int-icon">🎨</div>
+        <div class="int-name">Figma / Adobe</div>
+        <div class="int-desc">AI 驱动的设计评审与创意建议，专为设计专业优化</div>
+      </div>
+      <div class="int-card">
+        <div class="int-icon">💻</div>
+        <div class="int-name">VS Code</div>
+        <div class="int-desc">内置代码补全与调试建议，与主流 IDE 深度集成</div>
+      </div>
+      <div class="int-card">
+        <div class="int-icon">📊</div>
+        <div class="int-name">学业分析台</div>
+        <div class="int-desc">可视化学习数据，识别薄弱环节，精准推荐学习资源</div>
+      </div>
+      <div class="int-card">
+        <div class="int-icon">🤝</div>
+        <div class="int-name">协作空间</div>
+        <div class="int-desc">小组项目 AI 协作，智能分配任务，汇总进度报告</div>
+      </div>
+      <div class="int-card">
+        <div class="int-icon">🌐</div>
+        <div class="int-name">学术数据库</div>
+        <div class="int-desc">接入知网、万方、Web of Science，AI 辅助文献综述</div>
+      </div>
+      <div class="int-card">
+        <div class="int-icon">📱</div>
+        <div class="int-name">移动端原生</div>
+        <div class="int-desc">iOS 与 Android 原生体验，随时随地访问校园智能</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">Campus Intelligence</div>
+        <p>大连工业大学艺术与信息工程学院专属 AI 平台，由 ChatGPT 提供核心智能支持。</p>
+        <p style="margin-top:12px;font-size:12px;color:rgba(255,255,255,0.2);">Dalian Polytechnic University<br>School of Art & Information Engineering</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品</h4>
+        <ul>
+          <li><a href="#">AI 助手</a></li>
+          <li><a href="#">写作工具</a></li>
+          <li><a href="#">代码助手</a></li>
+          <li><a href="#">创意设计</a></li>
+          <li><a href="#">学习规划</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>学院</h4>
+        <ul>
+          <li><a href="#">学院主页</a></li>
+          <li><a href="#">教务系统</a></li>
+          <li><a href="#">图书馆</a></li>
+          <li><a href="#">学术活动</a></li>
+          <li><a href="#">导师团队</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>支持</h4>
+        <ul>
+          <li><a href="#">使用指南</a></li>
+          <li><a href="#">常见问题</a></li>
+          <li><a href="#">反馈建议</a></li>
+          <li><a href="#">隐私政策</a></li>
+          <li><a href="#">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright © 2025 大连工业大学艺术与信息工程学院 · Campus Intelligence. 保留所有权利。</p>
+      <div class="powered-by">AI 驱动 <span>ChatGPT</span> · 隐私优先设计</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Device switcher
+  function switchDevice(type) {
+    document.querySelectorAll('.device-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + type).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Stats counter animation
+  function animateCount(id, target, suffix='', duration=1800) {
+    const el = document.getElementById(id);
+    let start = 0;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const statsEl = document.getElementById('stat1');
+  const statsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      animateCount('stat1', 8600, '+');
+      animateCount('stat2', 24000, '+');
+      animateCount('stat3', 48, '个');
+      setTimeout(() => {
+        document.getElementById('stat4').textContent = '9.8分';
+      }, 1800);
+      statsObserver.disconnect();
+    }
+  }, { threshold: 0.3 });
+  statsObserver.observe(statsEl);
+
+  // Chat demo
+  const responses = [
+    "很好的问题！根据你的描述，我为你整理了详细的解答和相关学习资源。建议你结合大工艺信的课程体系，循序渐进地深入学习这个领域。",
+    "作为大连工业大学艺信学院的学生，你的问题很有代表性！我从学术角度为你分析：首先需要理解核心概念，然后通过实践项目加深理解。我可以为你生成一份定制化的学习计划。",
+    "这是一个涵盖多个维度的综合性问题。让我从理论基础、实践应用和创新拓展三个层面为你详细解答，并推荐相关的参考文献供深入研究。",
+    "基于 ChatGPT 的深度分析，结合你们学院的教学方向，我认为最优的解决方案是……同时我也准备了几个相关的代码示例和案例供你参考。"
+  ];
+  let respIdx = 0;
+
+  async function sendChat() {
+    const input = document.getElementById('chatInput');
+    const body = document.getElementById('chatBody');
+    const typingMsg = document.getElementById('typingMsg');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+
+    // User msg
+    const userMsg = document.createElement('div');
+    userMsg.className = 'cw-msg user';
+    userMsg.innerHTML = `<div class="cw-avatar user">👤</div><div class="cw-bubble">${text}</div>`;
+    body.insertBefore(userMsg, typingMsg);
+
+    // Show typing
+    typingMsg.style.display = 'flex';
+    body.scrollTop = body.scrollHeight;
+
+    await new Promise(r => setTimeout(r, 1400));
+
+    typingMsg.style.display = 'none';
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'cw-msg';
+    aiMsg.innerHTML = `<div class="cw-avatar ai">🎓</div><div class="cw-bubble">${responses[respIdx % responses.length]}</div>`;
+    body.insertBefore(aiMsg, typingMsg);
+    respIdx++;
+    body.scrollTop = body.scrollHeight;
+  }
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.92)' : 'rgba(0,0,0,0.82)';
+  });
+</script>
+</body>
+</html>
